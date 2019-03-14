@@ -5,25 +5,26 @@ import uthappizza from '../assets/images/uthappizza.png'
 
 function Menu(props) {
 
-    const renderMenuItem = ({item, index}) => {
+    const renderMenuItem = ({ item, index }) => {
 
         return (
-                <ListItem
-                    key={index}
-                    title={item.name}
-                    subtitle={item.description}
-                    hideChevron={true}
-                    leftAvatar={{ source: uthappizza}}
-                  />
+            <ListItem
+                key={index}
+                title={item.name}
+                subtitle={item.description}
+                hideChevron={true}
+                onPress={() => props.onPress(item.id)}
+                leftAvatar={{ source: uthappizza }}
+            />
         );
     };
 
     return (
-            <FlatList 
-                data={props.dishes}
-                renderItem={renderMenuItem}
-                keyExtractor={item => item.id.toString()}
-                />
+        <FlatList
+            data={props.dishes}
+            renderItem={renderMenuItem}
+            keyExtractor={item => item.id.toString()}
+        />
     );
 }
 
