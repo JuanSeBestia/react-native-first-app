@@ -4,6 +4,8 @@ import { View, Platform } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { DISHES } from '../shared/dishes';
 import DishDetail from './DIshDetailComponent';
+// in managed apps:
+import { Constants } from 'expo';
 
 const MenuNavigator = createStackNavigator({
     Menu: { screen: Menu },
@@ -11,9 +13,9 @@ const MenuNavigator = createStackNavigator({
 },
     {
         initialRouteName: 'Menu',
-        navigationOptions: {
+        defaultNavigationOptions: {
             headerStyle: {
-                backgroundColor: "#512DA8"
+                backgroundColor: '#512DA8',
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
@@ -41,7 +43,7 @@ class Main extends Component {
     render() {
 
         return (
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, paddingTop: Platform.OS === 'ios' ? Constants.statusBarHeight : 0 }}>
                 {/* <Menu dishes={this.state.dishes} onPress={(dishId) => this.onDishSelect(dishId)} />
                 <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} /> */}
                 <MenuContainer />
