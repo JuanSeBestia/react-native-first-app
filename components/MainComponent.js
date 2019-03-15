@@ -7,6 +7,8 @@ import DishDetail from './DIshDetailComponent';
 import { Constants } from 'expo';
 import Home from './HomeComponent';
 import { Icon } from 'react-native-elements';
+import ContactComponent from './ContactComponent';
+import AboutComponent from './AboutComponent';
 
 
 const defaultNavigationOptions = {
@@ -30,25 +32,45 @@ const MenuNavigator = createStackNavigator({
 );
 
 const HomeNavigator = createStackNavigator(
-    {
-        Home: { screen: Home }
-    }, { defaultNavigationOptions });
+    { Home: { screen: Home } }, { defaultNavigationOptions });
+
+const ContactNavigator = createStackNavigator(
+    { Home: { screen: ContactComponent } }, { defaultNavigationOptions });
+
+const AboutNavigator = createStackNavigator(
+    { Home: { screen: AboutComponent } }, { defaultNavigationOptions });
 
 const MainNavigator = createDrawerNavigator({
-    Home:
-    {
+
+    Home: {
         screen: HomeNavigator,
         navigationOptions: {
             title: 'Home',
+            drawerIcon: ({ tintColor }) => <Icon name="home" />,
         }
     },
-    Menu:
-    {
+    Menu: {
         screen: MenuNavigator,
         navigationOptions: {
             title: 'Menu',
+            drawerIcon: ({ tintColor }) => <Icon name="list"/>,
         },
-    }
+    },
+    Contact: {
+        screen: ContactNavigator,
+        navigationOptions: {
+            title: 'Contact',
+            drawerIcon: ({ tintColor }) => <Icon name="person"/>,
+        },
+    },
+    About: {
+        screen: AboutNavigator,
+
+        navigationOptions: {
+            title: 'About',
+            drawerIcon: ({ tintColor }) => <Icon name="info"/>,
+        },
+    },
 }, {
         drawerBackgroundColor: '#D1C4E9'
     });
