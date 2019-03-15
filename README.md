@@ -29,6 +29,7 @@ Open it in the [Expo app](https://expo.io) on your phone to view it. It will rel
 #### `npm run json-server`
 
 Runs api of json data
+see more https://egghead.io/lessons/javascript-creating-demo-apis-with-json-server
 
 #### `npm test`
 
