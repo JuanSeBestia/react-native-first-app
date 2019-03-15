@@ -9,6 +9,7 @@ function Menu(props) {
 
         return (
             <ListItem
+                containerStyle={{ borderBottomWidth: 1, borderBottomColor: 555 }}
                 key={index}
                 title={item.name}
                 subtitle={item.description}
