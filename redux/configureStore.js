@@ -1,13 +1,13 @@
-import { Platform } from 'react-native';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+// import { Platform } from 'react-native';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga'
 
-import { dishes } from './dishes';
-import { comments } from './comments';
-import { promotions } from './promotions';
-import { leaders } from './leaders';
+import { dishes } from './dishes/Reducers';
+import { comments } from './comments/Reducers';
+import { promotions } from './promotions/Reducers';
+import { leaders } from './leaders/Reducers';
 
 import rootSaga from './RootSagas';
 

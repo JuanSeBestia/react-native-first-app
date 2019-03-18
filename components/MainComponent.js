@@ -10,7 +10,29 @@ import { Icon } from 'react-native-elements';
 import ContactComponent from './ContactComponent';
 import AboutComponent from './AboutComponent';
 
+import { connect } from 'react-redux';
+import { fetchDishes } from '../redux/dishes/ActionCreators';
+import { fetchComments } from '../redux/comments/ActionCreators';
+import { fetchPromos } from '../redux/promotions/ActionCreators';
+import { fetchLeaders } from '../redux/leaders/ActionCreators';
 
+const mapStateToProps = state => {
+    return {
+        dishes: state.dishes,
+        comments: state.comments,
+        promotions: state.promotions,
+        leaders: state.leaders
+    }
+}
+
+const mapDispatchToProps = dispatch => ({
+    fetchDishes: () => dispatch(fetchDishes()),
+    fetchComments: () => dispatch(fetchComments()),
+    fetchPromos: () => dispatch(fetchPromos()),
+    fetchLeaders: () => dispatch(fetchLeaders()),
+})
+
+// Menu render
 const CustomDrawerContentComponent = (props) => (
 
     <ScrollView>
@@ -28,6 +50,7 @@ const CustomDrawerContentComponent = (props) => (
     </ScrollView>
 );
 
+// START NAVIGATION
 export const defaultNavigationOptions = ({ navigation }) => ({
     headerStyle: {
         backgroundColor: '#512DA8',
@@ -105,11 +128,18 @@ const MainNavigator = createDrawerNavigator({
     });
 const MainContainer = createAppContainer(MainNavigator);
 
-
+// END NAVIGATION
 
 
 
 class Main extends Component {
+
+    componentDidMount() {
+        this.props.fetchDishes();
+        this.props.fetchComments();
+        this.props.fetchPromos();
+        this.props.fetchLeaders();
+    }
 
     onDishSelect(dishId) {
         this.setState({ selectedDish: dishId })
@@ -152,4 +182,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default Main;
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

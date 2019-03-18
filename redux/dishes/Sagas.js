@@ -8,9 +8,10 @@ import * as ActionTypes from './ActionTypes'
 export function* fetchDishesSaga(action) {
     try {
         yield put(ActionCreators.dishesLoading())
-        const dishes = yield call(api.characters.fecthAll)
+        const dishes = yield call(api.dishes.fecthAll)
         yield put(ActionCreators.addDishes({ payload: dishes }));
     } catch (error) {
+        console.error("fetchDishesSaga:error", error)
         yield put(ActionCreators.dishesFailed({ error: error.response }));
     }
 }
