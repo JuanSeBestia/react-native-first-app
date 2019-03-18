@@ -15,6 +15,7 @@ import { fetchDishes } from '../redux/dishes/ActionCreators';
 import { fetchComments } from '../redux/comments/ActionCreators';
 import { fetchPromos } from '../redux/promotions/ActionCreators';
 import { fetchLeaders } from '../redux/leaders/ActionCreators';
+import Reservation from './ReservationComponent';
 
 const mapStateToProps = state => {
     return {
@@ -82,6 +83,9 @@ const ContactNavigator = createStackNavigator(
 const AboutNavigator = createStackNavigator(
     { Home: { screen: AboutComponent } }, { defaultNavigationOptions });
 
+const ReservationNavigator = createStackNavigator(
+    { Home: { screen: Reservation } }, { defaultNavigationOptions });
+
 const MainNavigator = createDrawerNavigator({
 
     Home: {
@@ -111,6 +115,14 @@ const MainNavigator = createDrawerNavigator({
         navigationOptions: {
             title: 'About',
             drawerIcon: ({ tintColor }) => <Icon name="info" color={tintColor} />,
+        },
+    },
+    Reservation: {
+        screen: ReservationNavigator,
+
+        navigationOptions: {
+            title: 'Reservation',
+            drawerIcon: ({ tintColor }) => <Icon name="cutlery" type="font-awesome" color={tintColor} />,
         },
     },
 }, {
