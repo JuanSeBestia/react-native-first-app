@@ -8,6 +8,7 @@ import { dishes } from './dishes/Reducers';
 import { comments } from './comments/Reducers';
 import { promotions } from './promotions/Reducers';
 import { leaders } from './leaders/Reducers';
+import { favorites } from './favorites/Reducers';
 
 import rootSaga from './RootSagas';
 
@@ -41,7 +42,8 @@ export const ConfigureStore = () => {
             dishes,
             comments,
             promotions,
-            leaders
+            leaders,
+            favorites,
         }), enhancer);
     sagaMiddleware.run(rootSaga);
 
