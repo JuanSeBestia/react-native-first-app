@@ -11,8 +11,8 @@ export function* fetchDishesSaga(action) {
         const dishes = yield call(api.dishes.fecthAll)
         yield put(ActionCreators.addDishes(dishes));
     } catch (error) {
-        console.error("fetchDishesSaga:error", error)
-        yield put(ActionCreators.dishesFailed({ error: error.response }));
+        console.log("fetchDishesSaga:error", { error })
+        yield put(ActionCreators.dishesFailed(error.message));
     }
 }
 

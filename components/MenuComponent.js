@@ -3,6 +3,7 @@ import { FlatList } from 'react-native';
 import { Tile } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
+import { Loading } from './LoadingComponent';
 
 const mapStateToProps = state => {
     return {
@@ -31,7 +32,18 @@ class Menu extends Component {
                 />
             );
         };
-        console.log("RenderMenu:", { dishes: this.props.dishes });
+        if (this.props.dishes.isLoading) {
+            return (
+                <Loading />
+            )
+        } else if (this.props.dishes.errMess) {
+            return (
+                <Tile
+                    title={this.props.dishes.errMess}
+                    featured
+                />
+            )
+        }
         return (
             <FlatList
                 data={this.props.dishes.dishes}

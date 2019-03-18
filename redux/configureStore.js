@@ -23,7 +23,11 @@ const sagaMiddleware = createSagaMiddleware();
 export const ConfigureStore = () => {
     const enhancer = compose(
         composeWithDevTools(
-            applyMiddleware(sagaMiddleware, thunk, logger)
+            applyMiddleware(
+                sagaMiddleware,
+                thunk,
+                logger
+            )
         ),
         // devTools({
         //     name: Platform.OS,
