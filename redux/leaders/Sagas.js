@@ -9,7 +9,7 @@ export function* fetchLeadersSaga(action) {
     try {
         yield put(ActionCreators.leadersLoading())
         const leaders = yield call(api.leaders.fecthAll)
-        yield put(ActionCreators.addLeaders({ payload: leaders }));
+        yield put(ActionCreators.addLeaders(leaders));
     } catch (error) {
         console.error("fetchLeadersSaga:error", error)
         yield put(ActionCreators.leadersFailed({ error: error.response }));

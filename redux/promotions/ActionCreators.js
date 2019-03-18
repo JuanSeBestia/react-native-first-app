@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-export const baseUrl = "http://192.168.0.229:3001/"
+import { baseUrl } from '../../shared/baseUrl';
 
 export const fetchPromos = () => (dispatch) => {
 

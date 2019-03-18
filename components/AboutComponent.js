@@ -3,21 +3,23 @@ import { ScrollView, Text, FlatList } from 'react-native';
 import { Card, Divider, ListItem } from 'react-native-elements'
 import alberto from '../assets/images/alberto.png'
 import { styles } from './styles';
-import { LEADERS } from '../shared/leaders';
 
-export default class AboutComponent extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            leaders: LEADERS
-        };
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+
+const mapStateToProps = state => {
+    return {
+        leaders: state.leaders
     }
+}
+
+class AboutComponent extends Component {
 
     static navigationOptions = {
         title: 'About',
     };
 
-    renderLeaderItem = ({ item, index }) => {
+    renderLeader = ({ item, index }) => {
         return (
             <ListItem
                 containerStyle={{ borderBottomWidth: 1, borderBottomColor: 555 }}
@@ -25,7 +27,7 @@ export default class AboutComponent extends Component {
                 title={item.name}
                 subtitle={item.description}
                 hideChevron={true}
-                leftAvatar={{ source: alberto }}
+                leftAvatar={{ source: { uri: baseUrl + item.image } }}
             />
         );
     };
@@ -39,8 +41,8 @@ export default class AboutComponent extends Component {
                 </Card>
                 <Card title="Corporate Leadership">
                     <FlatList
-                        data={this.state.leaders}
-                        renderItem={this.renderLeaderItem}
+                        data={this.props.leaders.leaders}
+                        renderItem={this.renderLeader}
                         keyExtractor={item => item.id.toString()}
                     />
                 </Card>
@@ -48,3 +50,5 @@ export default class AboutComponent extends Component {
         )
     }
 }
+
+export default connect(mapStateToProps)(AboutComponent);
