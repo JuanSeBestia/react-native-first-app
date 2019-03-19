@@ -22,7 +22,8 @@ import storage from 'redux-persist/es/storage';
 const configPersistStore = {
     key: 'root',
     storage,
-    debug: true
+    debug: true,
+    blacklist: ['leaders']
 }
 
 const sagaMiddleware = createSagaMiddleware();
