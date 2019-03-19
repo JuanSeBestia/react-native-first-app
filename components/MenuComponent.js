@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { Loading } from './LoadingComponent';
 
+import * as Animatable from 'react-native-animatable';
+
 const mapStateToProps = state => {
     return {
         dishes: state.dishes
@@ -45,11 +47,13 @@ class Menu extends Component {
             )
         }
         return (
-            <FlatList
-                data={this.props.dishes.dishes}
-                renderItem={renderMenuItem}
-                keyExtractor={item => item.id.toString()}
-            />
+            <Animatable.View animation="bounceInDown" duration={2000}>
+                <FlatList
+                    data={this.props.dishes.dishes}
+                    renderItem={renderMenuItem}
+                    keyExtractor={item => item.id.toString()}
+                />
+            </Animatable.View>
         );
     }
 }

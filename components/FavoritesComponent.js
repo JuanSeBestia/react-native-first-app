@@ -8,6 +8,7 @@ import { baseUrl } from '../shared/baseUrl';
 import Swipeout from 'react-native-swipeout';
 import { deleteFavorite } from '../redux/favorites/ActionCreators';
 
+import * as Animatable from 'react-native-animatable';
 
 const mapStateToProps = state => {
     return {
@@ -101,11 +102,13 @@ class Favorites extends Component {
         }
         else {
             return (
-                <FlatList
-                    data={this.props.dishes.dishes.filter(dish => this.props.favorites.some(el => el === dish.id))}
-                    renderItem={renderMenuItem}
-                    keyExtractor={item => item.id.toString()}
-                />
+                <Animatable.View animation="fadeInRightBig" duration={2000}>
+                    <FlatList
+                        data={this.props.dishes.dishes.filter(dish => this.props.favorites.some(el => el === dish.id))}
+                        renderItem={renderMenuItem}
+                        keyExtractor={item => item.id.toString()}
+                    />
+                </Animatable.View>
             );
         }
     }

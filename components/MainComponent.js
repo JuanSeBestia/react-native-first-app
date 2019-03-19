@@ -91,6 +91,14 @@ const FavoritesNavigator = createStackNavigator(
     { Home: { screen: FavoritesComponent } }, { defaultNavigationOptions });
 
 const MainNavigator = createDrawerNavigator({
+    About: {
+        screen: AboutNavigator,
+
+        navigationOptions: {
+            title: 'About',
+            drawerIcon: ({ tintColor }) => <Icon name="info" color={tintColor} />,
+        },
+    },
     Menu: {
         screen: MenuNavigator,
         navigationOptions: {
@@ -110,14 +118,6 @@ const MainNavigator = createDrawerNavigator({
         navigationOptions: {
             title: 'Contact',
             drawerIcon: ({ tintColor }) => <Icon name="person" color={tintColor} />,
-        },
-    },
-    About: {
-        screen: AboutNavigator,
-
-        navigationOptions: {
-            title: 'About',
-            drawerIcon: ({ tintColor }) => <Icon name="info" color={tintColor} />,
         },
     },
     Reservation: {
