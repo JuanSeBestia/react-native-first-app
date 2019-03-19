@@ -61,7 +61,7 @@ export const defaultNavigationOptions = ({ navigation }) => ({
     headerTitleStyle: {
         color: "#fff"
     },
-    headerLeft: <Icon name="menu" size={24}
+    headerLeft: <Icon name="menu" containerStyle={{marginLeft: 16}}
         color='white'
         onPress={() => navigation.toggleDrawer()} />
 })
