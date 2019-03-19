@@ -88,19 +88,20 @@ const ReservationNavigator = createStackNavigator(
 
 const MainNavigator = createDrawerNavigator({
 
-    Home: {
-        screen: HomeNavigator,
-        navigationOptions: {
-            title: 'Home',
-            drawerIcon: ({ tintColor }) => <Icon name="home" color={tintColor} />,
-        }
-    },
+    
     Menu: {
         screen: MenuNavigator,
         navigationOptions: {
             title: 'Menu',
             drawerIcon: ({ tintColor }) => <Icon name="list" color={tintColor} />,
         },
+    },
+    Home: {
+        screen: HomeNavigator,
+        navigationOptions: {
+            title: 'Home',
+            drawerIcon: ({ tintColor }) => <Icon name="home" color={tintColor} />,
+        }
     },
     Contact: {
         screen: ContactNavigator,

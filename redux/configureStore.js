@@ -27,7 +27,7 @@ export const ConfigureStore = () => {
             applyMiddleware(
                 sagaMiddleware,
                 thunk,
-                logger
+                //logger
             )
         ),
         // devTools({
