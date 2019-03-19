@@ -16,6 +16,7 @@ import { fetchComments } from '../redux/comments/ActionCreators';
 import { fetchPromos } from '../redux/promotions/ActionCreators';
 import { fetchLeaders } from '../redux/leaders/ActionCreators';
 import Reservation from './ReservationComponent';
+import FavoritesComponent from './FavoritesComponent';
 
 const mapStateToProps = state => {
     return {
@@ -86,9 +87,10 @@ const AboutNavigator = createStackNavigator(
 const ReservationNavigator = createStackNavigator(
     { Home: { screen: Reservation } }, { defaultNavigationOptions });
 
-const MainNavigator = createDrawerNavigator({
+const FavoritesNavigator = createStackNavigator(
+    { Home: { screen: FavoritesComponent } }, { defaultNavigationOptions });
 
-    
+const MainNavigator = createDrawerNavigator({
     Menu: {
         screen: MenuNavigator,
         navigationOptions: {
@@ -124,6 +126,14 @@ const MainNavigator = createDrawerNavigator({
         navigationOptions: {
             title: 'Reservation',
             drawerIcon: ({ tintColor }) => <Icon name="cutlery" type="font-awesome" color={tintColor} />,
+        },
+    },
+    Favorites: {
+        screen: FavoritesNavigator,
+
+        navigationOptions: {
+            title: 'Favorites',
+            drawerIcon: ({ tintColor }) => <Icon name="heart" type="font-awesome" color={tintColor} />,
         },
     },
 }, {
