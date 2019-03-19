@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, View, Text } from 'react-native';
+import { FlatList, View, Text, Alert } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { Loading } from './LoadingComponent';
@@ -36,7 +36,30 @@ class Favorites extends Component {
                 {
                     text: 'Delete',
                     type: 'delete',
-                    onPress: () => this.props.deleteFavorite(item.id)
+                    onPress: () => {
+                        Alert.alert(
+                            'Delete Favorite?',
+                            'Are you sure you wish to delete the favorite dish ' + item.name + '?',
+                            [
+                                {
+                                    text: 'Cancel',
+                                    onPress: () => console.log(item.name + 'Not Deleted'),
+                                    style: 'cancel'
+                                },
+                                {
+                                    text: 'Destroy',
+                                    onPress: () => console.log(item.name + 'Not Destroyed'),
+                                    style: 'destructive'
+                                },
+                                {
+                                    text: 'OK',
+                                    onPress: () => this.props.deleteFavorite(item.id)
+                                }
+                            ],
+                            { cancelable: false }
+                        );
+
+                    }
                 },
                 {
                     text: 'add',
@@ -58,8 +81,8 @@ class Favorites extends Component {
                         subtitle={item.description}
                         hideChevron={true}
                         onPress={() => navigate('Dishdetail', { dishId: item.id })}
-                        leftAvatar={{ source: {uri: baseUrl + item.image}}}
-                        />
+                        leftAvatar={{ source: { uri: baseUrl + item.image } }}
+                    />
                 </Swipeout>
             );
         };
