@@ -16,8 +16,14 @@ import rootSaga from './RootSagas';
 import { composeWithDevTools } from 'redux-devtools-extension';
 // import devTools from 'remote-redux-devtools';
 
+import { persistStore, persistCombineReducers } from 'redux-persist';
+import storage from 'redux-persist/es/storage';
 
-
+const configPersistStore = {
+    key: 'root',
+    storage,
+    debug: true
+}
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -27,7 +33,7 @@ export const ConfigureStore = () => {
             applyMiddleware(
                 sagaMiddleware,
                 thunk,
-                //logger
+                logger
             )
         ),
         // devTools({
@@ -38,7 +44,7 @@ export const ConfigureStore = () => {
     );
 
     const store = createStore(
-        combineReducers({
+        persistCombineReducers(configPersistStore, {
             dishes,
             comments,
             promotions,
@@ -47,5 +53,7 @@ export const ConfigureStore = () => {
         }), enhancer);
     sagaMiddleware.run(rootSaga);
 
-    return store;
+    const persistor = persistStore(store);
+
+    return { persistor, store };
 }

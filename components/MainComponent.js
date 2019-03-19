@@ -158,10 +158,16 @@ const MainContainer = createAppContainer(MainNavigator);
 class Main extends Component {
 
     componentDidMount() {
-        this.props.fetchDishes();
-        this.props.fetchComments();
-        this.props.fetchPromos();
-        this.props.fetchLeaders();
+        console.log("Main:componentDidMount:props", this.props);
+
+        if (!this.props.dishes.dishes.length) this.props.fetchDishes();
+        else console.log("Main:componentDidMount:Dishes already loaded");
+        if (!this.props.comments.comments.length) this.props.fetchComments();
+        else console.log("Main:componentDidMount:Comments already loaded");
+        if (!this.props.promotions.promotions.length) this.props.fetchPromos();
+        else console.log("Main:componentDidMount:Promos already loaded");
+        if (!this.props.leaders.leaders.length) this.props.fetchLeaders();
+        else console.log("Main:componentDidMount:Comments already loaded");
     }
 
     onDishSelect(dishId) {
@@ -172,8 +178,6 @@ class Main extends Component {
 
         return (
             <View style={{ flex: 1, paddingTop: Platform.OS === 'ios' ? Constants.statusBarHeight : 0 }}>
-                {/* <Menu dishes={this.state.dishes} onPress={(dishId) => this.onDishSelect(dishId)} />
-                <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} /> */}
                 <MainContainer />
             </View>
         );
