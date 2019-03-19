@@ -91,19 +91,19 @@ const FavoritesNavigator = createStackNavigator(
     { Home: { screen: FavoritesComponent } }, { defaultNavigationOptions });
 
 const MainNavigator = createDrawerNavigator({
+    Menu: {
+        screen: MenuNavigator,
+        navigationOptions: {
+            title: 'Menu',
+            drawerIcon: ({ tintColor }) => <Icon name="list" color={tintColor} />,
+        },
+    },
     About: {
         screen: AboutNavigator,
 
         navigationOptions: {
             title: 'About',
             drawerIcon: ({ tintColor }) => <Icon name="info" color={tintColor} />,
-        },
-    },
-    Menu: {
-        screen: MenuNavigator,
-        navigationOptions: {
-            title: 'Menu',
-            drawerIcon: ({ tintColor }) => <Icon name="list" color={tintColor} />,
         },
     },
     Home: {
