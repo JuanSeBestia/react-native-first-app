@@ -17,6 +17,7 @@ import { fetchPromos } from '../redux/promotions/ActionCreators';
 import { fetchLeaders } from '../redux/leaders/ActionCreators';
 import Reservation from './ReservationComponent';
 import FavoritesComponent from './FavoritesComponent';
+import Login from './LoginComponent';
 
 const mapStateToProps = state => {
     return {
@@ -61,7 +62,7 @@ export const defaultNavigationOptions = ({ navigation }) => ({
     headerTitleStyle: {
         color: "#fff"
     },
-    headerLeft: <Icon name="menu" containerStyle={{marginLeft: 16}}
+    headerLeft: <Icon name="menu" containerStyle={{ marginLeft: 16 }}
         color='white'
         onPress={() => navigation.toggleDrawer()} />
 })
@@ -79,16 +80,19 @@ const HomeNavigator = createStackNavigator(
     { Home: { screen: Home } }, { defaultNavigationOptions });
 
 const ContactNavigator = createStackNavigator(
-    { Home: { screen: ContactComponent } }, { defaultNavigationOptions });
+    { Contact: { screen: ContactComponent } }, { defaultNavigationOptions });
 
 const AboutNavigator = createStackNavigator(
-    { Home: { screen: AboutComponent } }, { defaultNavigationOptions });
+    { About: { screen: AboutComponent } }, { defaultNavigationOptions });
 
 const ReservationNavigator = createStackNavigator(
-    { Home: { screen: Reservation } }, { defaultNavigationOptions });
+    { Reservation: { screen: Reservation } }, { defaultNavigationOptions });
 
 const FavoritesNavigator = createStackNavigator(
-    { Home: { screen: FavoritesComponent } }, { defaultNavigationOptions });
+    { Favorites: { screen: FavoritesComponent } }, { defaultNavigationOptions });
+
+const LoginNavigator = createStackNavigator(
+    { Login: { screen: Login } }, { defaultNavigationOptions });
 
 const MainNavigator = createDrawerNavigator({
     Menu: {
@@ -134,6 +138,14 @@ const MainNavigator = createDrawerNavigator({
         navigationOptions: {
             title: 'Favorites',
             drawerIcon: ({ tintColor }) => <Icon name="heart" type="font-awesome" color={tintColor} />,
+        },
+    },
+    Login: {
+        screen: LoginNavigator,
+
+        navigationOptions: {
+            title: 'Login',
+            drawerIcon: ({ tintColor }) => <Icon name="sign-in" type="font-awesome" color={tintColor} />,
         },
     },
 }, {
