@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, Modal, Alert } from 'react-native';
 import DatePicker from 'react-native-datepicker';
-
+// Animations
 import * as Animatable from 'react-native-animatable';
+// Native Capabilities
+import { Permissions, Notifications } from 'expo';
 
 export class Reservation extends Component {
     constructor(props) {
@@ -35,6 +37,7 @@ export class Reservation extends Component {
 
     submit() {
         console.log("handleReservation", this.state);
+        this.presentLocalNotification(this.state.date);
         // this.toggleModal();
     }
 
@@ -48,6 +51,33 @@ export class Reservation extends Component {
 
     toggleModal() {
         this.setState({ showModal: !this.state.showModal })
+    }
+
+    async obtainNotificationPermission() {
+        let permission = await Permissions.getAsync(Permissions.USER_FACING_NOTIFICATIONS);
+        if (permission.status !== 'granted') {
+            permission = await Permissions.askAsync(Permissions.USER_FACING_NOTIFICATIONS);
+            if (permission.status !== 'granted') {
+                Alert.alert('Permission not granted to show notifications');
+            }
+        }
+        return permission;
+    }
+
+    async presentLocalNotification(date) {
+        await this.obtainNotificationPermission();
+        Notifications.presentLocalNotificationAsync({
+            title: 'Your Reservation',
+            body: 'Reservation for ' + date + ' requested',
+            ios: {
+                sound: true
+            },
+            android: {
+                sound: true,
+                vibrate: true,
+                color: '#512DA8'
+            }
+        });
     }
 
     render() {
@@ -123,7 +153,10 @@ export class Reservation extends Component {
                             <Text style={styles.modalText}>Smoking?: {this.state.smoking ? 'Yes' : 'No'}</Text>
                             <Text style={styles.modalText}>Date and time: {this.state.date}</Text>
                             <Button
-                                onPress={() => { this.toggleModal(); this.resetForm() }}
+                                onPress={() => { 
+                                    this.toggleModal(); 
+                                    this.resetForm();
+                                 }}
                                 title='Close'
                                 color='#512DA8'
                             />
