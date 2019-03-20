@@ -35,7 +35,9 @@ function RenderDish(props) {
 
     const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
         if (dx < -200) // Move to left
-            return true;
+            return 'left';
+        else if (dx > 200)
+            return 'right'
         else
             return false;
     }
@@ -47,19 +49,26 @@ function RenderDish(props) {
         },
         onPanResponderEnd: (e, gestureState) => {
             console.log("onPanResponderEnd:", { e, gestureState: { ...gestureState } });
-            if (recognizeDrag(gestureState))
-                Alert.alert(
-                    'Add Favorite',
-                    'Are you sure you wish to add ' + dish.name + ' to favorite?',
-                    [
-                        { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-                        { text: 'OK', onPress: () => { props.favorite ? console.log('Already favorite') : props.onPress() } },
-                    ],
-                    { cancelable: false }
-                );
-            else {
-                this.view.rubberBand(1000)
-                    .then(endState => console.log("rubberBand:", endState.finished ? 'finished' : 'cancelled'));
+            const gesture = recognizeDrag(gestureState)
+            switch (gesture) {
+                case 'left':
+                    Alert.alert(
+                        'Add Favorite',
+                        'Are you sure you wish to add ' + dish.name + ' to favorite?',
+                        [
+                            { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+                            { text: 'OK', onPress: () => { props.favorite ? console.log('Already favorite') : props.onPress() } },
+                        ],
+                        { cancelable: false }
+                    );
+                    break;
+                case 'right':
+                    props.toggleModal();
+                    break;
+                default:
+                    this.view.rubberBand(1000)
+                        .then(endState => console.log("rubberBand:", endState.finished ? 'finished' : 'cancelled'));
+                    break;
             }
             return true;
         }
@@ -160,8 +169,16 @@ class DishDetail extends Component {
         }
     }
 
+    // Not set on default
     static navigationOptions = {
-        title: 'Dish Details'
+        title: 'Dish Details',
+        headerStyle: {
+            backgroundColor: '#512DA8',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+            color: "#fff"
+        },
     };
 
     markFavorite(dishId) {
