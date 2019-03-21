@@ -325,6 +325,38 @@
       "comment": "aaa",
       "date": "2019-03-19T16:04:30.172Z",
       "id": 35
+    },
+    {
+      "dishId": 0,
+      "rating": 3,
+      "author": "",
+      "comment": "",
+      "date": "2019-03-21T16:07:59.268Z",
+      "id": 36
+    },
+    {
+      "dishId": 0,
+      "rating": 5,
+      "author": "",
+      "comment": "",
+      "date": "2019-03-21T16:08:00.876Z",
+      "id": 37
+    },
+    {
+      "dishId": 0,
+      "rating": 5,
+      "author": "",
+      "comment": "",
+      "date": "2019-03-21T16:08:02.303Z",
+      "id": 38
+    },
+    {
+      "dishId": 0,
+      "rating": 5,
+      "author": "",
+      "comment": "",
+      "date": "2019-03-21T16:08:10.299Z",
+      "id": 39
     }
   ],
   "promotions": [

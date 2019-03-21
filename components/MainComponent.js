@@ -220,7 +220,7 @@ class Main extends Component {
     render() {
 
         return (
-            <View style={{ flex: 1, paddingTop: Platform.OS === 'ios' ? Constants.statusBarHeight : 0 }}>
+            <View style={{ flex: 1 }}>
                 <MainContainer />
             </View>
         );
