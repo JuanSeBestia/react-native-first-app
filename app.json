@@ -26,6 +26,16 @@
       "supportsTablet": true
     },
     "description": "",
-    "githubUrl": "https://github.com/JuanSeBestia/react-first-app"
+    "githubUrl": "https://github.com/JuanSeBestia/react-first-app",
+    "isDetached": true,
+    "detach": {
+      "androidExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/android-v2.10.7-sdk32.0.0-3ff7f3bf-8e53-4d61-b963-1d7d92a77d79.tar.gz"
+    },
+    "scheme": "exp1613e4432fa04fe19b03deaa67f5b4a6",
+    "android": {
+      "package": "co.juanse.firstApp",
+      "publishBundlePath": "android/app/src/main/assets/shell-app.bundle",
+      "publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json"
+    }
   }
 }
